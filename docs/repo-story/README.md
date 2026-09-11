@@ -11,8 +11,6 @@ The result can be useful for understanding a project, preparing a resume or perf
 
 The skill is designed to work on repositories of almost any size, from a few commits to large monorepos, while preserving the complete history from the first commit to the most recent.
 
----
-
 ## What It Does
 
 The skill separates deterministic work from work that benefits from an LLM.
@@ -32,8 +30,6 @@ This makes the process faster, cheaper, and much more practical for smaller loca
 The graph is deterministic: the same repository produces the same result.
 
 The narrative step can use any model and any agent harness, including a local model.
-
----
 
 ## Quick Start
 
@@ -58,8 +54,6 @@ The skill itself can also drive the complete process when installed as an Agent 
 ```
 
 The scripts require only **git and Node.js**. There is no npm install and no external package dependency.
-
----
 
 ## How It Works
 
@@ -107,8 +101,6 @@ The story prompt requires the model to cite commit hashes when making claims and
 
 This keeps the model focused on interpretation and writing rather than mechanical log processing.
 
----
-
 ## Design Principles
 
 ### Complete history
@@ -135,8 +127,6 @@ Git history cannot prove everything about a project.
 
 The generated story is therefore expected to distinguish between what the history demonstrates and what would require verification from other sources.
 
----
-
 ## Scale
 
 The scripts are designed to handle large repositories without creating one subprocess per commit.
@@ -151,8 +141,6 @@ Evidence pack:      ~3s
 The graph's totals and heatmap are never capped.
 
 For very active days, the detailed per-commit list in the HTML can be capped with `--max-detail` so that the generated page remains manageable.
-
----
 
 ## CLI
 
@@ -184,8 +172,6 @@ node scripts/evidence.mjs [repoPath] [-o EVIDENCE.md] [options]
 
 Both scripts support `--version`.
 
----
-
 ## Output
 
 By default, generated files are written to a `repo-story/` directory under the current working directory.
@@ -195,8 +181,6 @@ This keeps generated artifacts together and makes them easy to remove or ignore 
 Output paths can be overridden with `-o`.
 
 The scripts never write into the installed skill directory, which may be read-only.
-
----
 
 ## Privacy
 
@@ -209,8 +193,6 @@ Generated files can still contain information from the repository, including con
 Treat `EVIDENCE.md`, `REPO_STORY.md`, and `contributions.html` as sensitive whenever the source repository itself is sensitive.
 
 No sample output is included in this repository for that reason.
-
----
 
 ## Versioning
 
