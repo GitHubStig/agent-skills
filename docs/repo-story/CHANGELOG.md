@@ -1,7 +1,7 @@
 # Changelog
 
 Versioning follows [semver](https://semver.org/). The version lives in
-`scripts/lib/version.mjs` — deliberately not in `skill.md` frontmatter, which
+`scripts/lib/version.mjs` — deliberately not in `SKILL.md` frontmatter, which
 supports only `name` and `description`.
 
 Both CLIs report it (`--version`), and it is stamped into what they produce:
