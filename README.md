@@ -6,7 +6,8 @@ A collection of reusable skills that can be used for any AI agents.
 
 | Skill |	Description |
 |-------|-------------|
-| [career-biographer](skills/career-biographer/) | Reconstructing career history through conversational interviewing, memory retrieval, fact-checking, and storytelling—turning fragmented experiences into a structured career knowledge base for interviews, resumes, LinkedIn, and other professional materials. |
+| [career-biographer](skills/career-biographer/) | [Reconstructing career history through conversational interviewing, memory retrieval, fact-checking, and storytelling—turning fragmented experiences into a structured career knowledge base for interviews, resumes, LinkedIn, and other professional materials.](docs/career-biographer/) |
+| [repo-story](skills/repo-story/) | [Visualize repository activity and summarize how a project evolved over time for retrospectives, reviews, or resumes.](docs/repo-story/) |
 
 ## Installation
 
