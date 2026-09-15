@@ -4,6 +4,20 @@ Versioning follows [semver](https://semver.org/). The skill has no scripts to
 report a version, and `SKILL.md` frontmatter supports only `name` and
 `description`, so the version lives here.
 
+## 0.3.0
+
+Changes from the third trial run (Sonnet):
+
+- Links: the "exists first" rule is stated in `SKILL.md` for `AGENTS.md` too, with no placeholder
+  links, and every docs pass checks links, docs-only steps included.
+- A feature becomes In progress once its spec is written, and resuming reads every feature not
+  marked Done and says why the key decisions were made. Planned is gone: a feature only talked
+  about goes in Open threads.
+- With no test setup, the choice is asked in the step report with a recommendation and recorded
+  as an ADR.
+- Steps are listed at the start of the reply, before any file is written.
+- A spec's Problem is written in the present tense, not as how the code used to behave.
+
 ## 0.2.0
 
 Changes from the first trial run of `trial-script.md`:

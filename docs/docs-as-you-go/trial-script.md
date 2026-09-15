@@ -78,8 +78,8 @@ first feature: `lab-log add` takes a test name, value, unit, low and high range 
   didn't call it a decision.
 - Adds the real-data rule to `AGENTS.md`, puts the data file in `.gitignore`,
   and uses made-up samples.
-- If there's no test setup yet, offers one with a recommendation instead of
-  deciding there won't be tests.
+- If there's no test setup yet, asks which to use, with a recommendation,
+  rather than picking one silently or deciding there won't be tests.
 - Stops after the spec, plan and tasks, **before any code**, because the prompt
   didn't say to build straight away.
 
@@ -147,8 +147,8 @@ one day I'd like a chart of each test over time in the browser, but park that. c
 next: `lab-log trend <test>` prints a text sparkline like ▁▃▅▇ of that test's values over time
 ```
 
-It should stop after the spec, plan and tasks, before any code. Then end the
-session (close it, or start a new conversation). This stands in
+It should stop after the spec, plan and tasks, before any code, with the
+feature's row showing In progress. Then end the session (close it, or start a new conversation). This stands in
 for the conversation being lost or summarised.
 
 ## Session 2
@@ -226,7 +226,7 @@ If it answers all four from the docs alone, the docs did their job.
 | 7 | Built straight away when told; new feature folder; 001 marked Done | |
 | 8 | Gotcha recorded in plain words; fix has a test | |
 | 9 | Parked item in Open threads | |
-| 10 | Stopped after the spec, before code | |
+| 10 | Stopped after the spec, before code; row says In progress | |
 | 11 | Resumed from the docs; said back key decisions; waited | |
 | 12 | Tasks ticked after tests; feature Done; didn't commit | |
 | 13 | Old row marked superseded; no JSON outside the ADRs; no history wording | |

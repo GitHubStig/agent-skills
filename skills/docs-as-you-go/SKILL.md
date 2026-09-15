@@ -49,7 +49,8 @@ Start only when the user asks. Then:
    [When to write what](#when-to-write-what)). An empty repo with one sentence of
    intent gets a two-line `AGENTS.md`, not ten empty files. Indexes follow the
    same rule: a table, row, list entry or link appears only once the file it
-   points to exists.
+   points to exists. That includes the links under "What this is" in
+   `AGENTS.md`. Never write a placeholder link or a "pending" note.
 4. **Other instruction files point here.** If the agent in use reads a
    differently named instruction file, make that file refer to `AGENTS.md`
    instead of copying its content, so there's one set of rules.
@@ -66,11 +67,12 @@ At the start of every new session, and whenever earlier conversation may have
 been summarised or lost, before doing anything else:
 
 1. Read `AGENTS.md`, then `docs/README.md`.
-2. Read `tasks.md` (and its `spec.md`) for any feature marked In progress.
+2. Read `spec.md` and `tasks.md` for every feature not marked Done.
 3. Read the Open threads in `AGENTS.md`.
 4. Say back, in a few lines, what shapes the next step: the key decisions and
-   rules (language, storage, constraints, gotchas), what's parked, and what's
-   left in the feature in progress. Then wait for the go-ahead.
+   why they were made, the rules (language, storage, constraints, gotchas),
+   what's parked, and what's left in any unfinished feature. Then wait for the
+   go-ahead.
 
 Trust the docs over what you think you remember from the conversation. If they
 disagree with what the user is now asking, point out the difference and ask.
@@ -108,6 +110,7 @@ Numbers are zero-padded and never reused: ADRs `0001`, features `001`.
 | The user parks something ("later", "park it", "not now")                | "Open threads" in `AGENTS.md`, with enough to resume it      |
 | An idea needs another project to change                                 | A draft in `docs/proposals/`; the user posts it              |
 | A task in a feature is finished and verified                            | Tick it in that feature's `tasks.md`                         |
+| A feature's spec is written                                             | Its row in the `docs/README.md` table says In progress       |
 | A feature's last task is ticked                                         | Its status in the `docs/README.md` table becomes Done        |
 | A bug is fixed                                                          | A test that fails without the fix; a gotcha if it could recur |
 | The user reverses an earlier decision                                   | A superseding ADR, and every doc that mentions the old choice |
@@ -120,7 +123,8 @@ list.
 This is the rule the skill exists for.
 
 - **Every step ends with a docs pass.** Before reporting a step as done, update
-  every doc the step affected. Code and its docs are one change.
+  every doc the step affected, and check that every link in those docs resolves.
+  Docs-only steps included. Code and its docs are one change.
 - **Decisions are written when they're made,** not at the end of the feature.
 - **Before anything long** (a big refactor, a long run, a research dive), write
   down where things stand: tick tasks, add open questions to `tasks.md` or Open
@@ -182,7 +186,9 @@ choice, in the present tense.
 - **Docs read as if written before the build.** Present tense, describing what
   the project does and why. No "we first tried…", "update:", dated change notes
   or "how it went" sections. History lives in git and ADRs. (ADR Context sections
-  are the exception: they explain the situation at the time.)
+  are the exception: they explain the situation at the time.) A spec's Problem
+  says what's missing, in the present tense ("there's no way to…"), not how the
+  code used to behave.
 - **Everything outside the ADRs describes the project as it is now.** That
   includes finished features' spec, plan and tasks. When something changes, they
   change with it.
@@ -201,11 +207,13 @@ choice, in the present tense.
 ## Working in steps
 
 - **One step at a time.** Split a big request into steps that each make sense as
-  one commit. Say what the steps are before starting the first.
-- **Tests.** If the project has no automated tests yet, offer to set them up,
-  using the language's built-in test runner where there is one, with a
-  recommendation, and record the choice. Never decide on your own that a project
-  doesn't need tests. Every bug fix gets a test that fails without the fix.
+  one commit. List the steps at the start of your reply, before any file is
+  written.
+- **Tests.** If the project has no automated tests yet, don't pick a setup
+  silently. Ask in that step's report which to use, with a recommendation (the
+  language's built-in test runner where there is one), and write the answer as
+  an ADR. Never decide on your own that a project doesn't need tests. Every bug
+  fix gets a test that fails without the fix.
 - **Verify with the project's own checks.** Formatting, linting, tests and build,
   whatever the project uses. For anything visible, look at it (run it, take a
   screenshot if you can). Check that links in changed docs resolve.

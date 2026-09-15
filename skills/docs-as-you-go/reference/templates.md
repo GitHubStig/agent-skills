@@ -35,6 +35,8 @@ decisions that were made on purpose. Longer explanations live in `docs/`.
 <Two or three sentences: what it does, for whom, the one constraint that shapes
 everything.>
 
+<One link per doc that exists; add the others as their files are created.>
+
 - **Why it exists:** [docs/product.md](docs/product.md)
 - **How it fits together:** [docs/architecture/overview.md](docs/architecture/overview.md)
 - **Why it's built this way:** [docs/adr/](docs/adr/)
@@ -111,7 +113,7 @@ with a short comment.>
 
 | #   | Feature | Status |
 | --- | ------- | ------ |
-| 001 | [<Feature name>](features/001-name/spec.md) | Planned |
+| 001 | [<Feature name>](features/001-name/spec.md) | In progress |
 
 ## Proposals
 
@@ -129,7 +131,9 @@ with a short comment.>
 ```
 
 List and table entries appear only once their file exists. Feature statuses:
-Planned, In progress, Done, Parked. Proposal statuses: Draft,
+In progress (spec written, tasks not all ticked), Done (every task ticked) and
+Parked (spec written, work stopped by the user). A feature that has only been
+talked about has no row; it goes in Open threads in `AGENTS.md`. Proposal statuses: Draft,
 Posted, Accepted, Declined.
 
 ## docs/product.md
