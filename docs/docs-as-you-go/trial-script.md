@@ -71,15 +71,14 @@ go with your pick
 first feature: `lab-log add` takes a test name, value, unit, low and high range and a date, and saves it. `lab-log list` shows everything by date. Don't bother with a database, one JSON file is plenty. Keep my real results out of git; put a few made-up ones in a samples file.
 ```
 
-- Says what the steps are before starting.
 - Writes `features/001-…/spec.md`, `plan.md` and `tasks.md` **before** the code,
   and the feature row shows In progress.
 - Records the storage choice (JSON, not a database) as an ADR, even though you
   didn't call it a decision.
 - Adds the real-data rule to `AGENTS.md`, puts the data file in `.gitignore`,
   and uses made-up samples.
-- If there's no test setup yet, asks which to use, with a recommendation,
-  rather than picking one silently or deciding there won't be tests.
+- If there's no test setup yet, proposes one as an ADR marked **Proposed** and
+  flags it in the report, rather than picking one silently or skipping tests.
 - Stops after the spec, plan and tasks, **before any code**, because the prompt
   didn't say to build straight away.
 
@@ -90,6 +89,7 @@ spec looks right, build it
 ```
 
 - Builds feature 001 and runs the tests. Tasks are ticked only after they pass.
+- The Proposed test setup ADR is now Accepted.
 
 ### 5. Commit
 
@@ -97,7 +97,8 @@ spec looks right, build it
 looks good, commit it
 ```
 
-- Stages everything, and mentions anything unexpected first.
+- Stages everything except the agent's own folder (the copied skill), and says
+  in its report what it left out.
 - Conventional subject line, with bullets for separate changes.
 - **No** `Co-authored-by` or "Generated with" line. Check with `git log -1`.
 - Docs and code are in the same commit. Nothing is pushed.
@@ -117,7 +118,8 @@ make the out-of-range stuff nicer
 put ↑ next to high values and ↓ next to low ones, and add `lab-log flagged` that only shows out-of-range results. no need to show me a spec first, just build it
 ```
 
-- Builds straight away, with the spec, plan and tasks written in the same step.
+- Builds straight away, in one step, but still writes the spec, plan and tasks
+  before the code.
 - A new `features/002-…` folder, or a clear reason it belongs in 001.
 - Feature 001 is marked Done in the table if all its tasks are ticked.
 
@@ -127,7 +129,7 @@ put ↑ next to high values and ↓ next to low ones, and add `lab-log flagged` 
 some results are written like "<5" instead of a number, and add crashes on them. treat "<5" as below 5, and only flag it if the range says so
 ```
 
-- Fixed, with a test.
+- Fixed, with a test it ran and saw fail before the fix.
 - The gotcha is in "Things that will bite you" in `AGENTS.md` (or the rule is in
   the spec), in plain words.
 
@@ -148,8 +150,8 @@ next: `lab-log trend <test>` prints a text sparkline like ▁▃▅▇ of that t
 ```
 
 It should stop after the spec, plan and tasks, before any code, with the
-feature's row showing In progress. Then end the session (close it, or start a new conversation). This stands in
-for the conversation being lost or summarised.
+feature's row showing In progress. Then end the session (close it, or start a
+new conversation). This stands in for the conversation being lost or summarised.
 
 ## Session 2
 
@@ -159,11 +161,11 @@ for the conversation being lost or summarised.
 resume docs-as-you-go
 ```
 
-- Reads `AGENTS.md`, `docs/README.md`, and the trend feature's spec and tasks before
-  doing anything else.
-- Sums up where things stand without asking you to repeat anything. It should
-  know the language, JSON storage and why, no packages, the "<5" handling, the
-  parked browser chart, and what's left in the trend feature.
+- Reads `AGENTS.md`, `docs/README.md`, and the trend feature's spec and tasks
+  before doing anything else.
+- Says back, without asking you to repeat anything: the language and why, JSON
+  storage and why, the test setup, the "<5" gotcha by name, the parked browser
+  chart, and the trend feature's tasks left.
 - Waits for your go-ahead before starting work.
 
 ### 12. Finish
@@ -172,8 +174,8 @@ resume docs-as-you-go
 carry on
 ```
 
-- Finishes the trend command, ticks the tasks after the tests pass, and marks
-  the trend feature Done.
+- Finishes the whole trend feature without stopping between tasks, ticks the
+  tasks after the tests pass, and marks it Done.
 - **Doesn't commit.** "Carry on" isn't a commit request.
 
 ### 13. A change of mind
@@ -219,16 +221,16 @@ If it answers all four from the docs alone, the docs did their job.
 | 1 | Only files with content; index links only existing files; stated the agreement; stopped | |
 | 2 | Options with a recommendation | |
 | 3 | ADR Accepted with options; rule in AGENTS.md | |
-| 4 | Stopped after spec, before code; unannounced storage ADR; data kept out of git; offered tests | |
-| 4b | Tests run; tasks ticked only after they pass | |
-| 5 | Conventional message, bullets, no attribution, not pushed | |
+| 4 | Stopped after spec, before code; unannounced storage ADR; data kept out of git; test setup as a Proposed ADR | |
+| 4b | Tests run; tasks ticked only after they pass; test ADR Accepted | |
+| 5 | Agent folder left out and mentioned; conventional message, bullets, no attribution, not pushed | |
 | 6 | Asked or offered options instead of guessing | |
-| 7 | Built straight away when told; new feature folder; 001 marked Done | |
-| 8 | Gotcha recorded in plain words; fix has a test | |
+| 7 | Built straight away when told, docs before code; new feature folder; 001 marked Done | |
+| 8 | Gotcha recorded in plain words; test seen failing before the fix | |
 | 9 | Parked item in Open threads | |
 | 10 | Stopped after the spec, before code; row says In progress | |
-| 11 | Resumed from the docs; said back key decisions; waited | |
-| 12 | Tasks ticked after tests; feature Done; didn't commit | |
+| 11 | Resumed from the docs; said back decisions with reasons, gotchas, parked items, tasks left; waited | |
+| 12 | Whole feature finished in one go; tasks ticked after tests; didn't commit | |
 | 13 | Old row marked superseded; no JSON outside the ADRs; no history wording | |
 | 14 | Final docs pass; commit clean | |
 | Any | Stopped for review at the end of every step | |

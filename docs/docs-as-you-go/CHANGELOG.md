@@ -4,6 +4,19 @@ Versioning follows [semver](https://semver.org/). The skill has no scripts to
 report a version, and `SKILL.md` frontmatter supports only `name` and
 `description`, so the version lives here.
 
+## 0.4.0
+
+Changes from the fourth trial run (Sonnet):
+
+- A step is one user request. "Carry on" on a feature with an approved plan finishes the whole
+  feature. Listing steps up front is only for big requests; a feature's plan Order is that list.
+- Building straight away still writes the spec, plan and tasks before the code.
+- With no test setup, the recommended one is written as a Proposed ADR and flagged in the report,
+  and becomes Accepted when the user goes ahead. A bug fix starts with a test seen failing.
+- Commits leave an agent's own folders out, and the report says what was left out.
+- Resuming says back a fixed list: each Accepted ADR's decision and why, each gotcha by name,
+  what's parked, and the tasks left.
+
 ## 0.3.0
 
 Changes from the third trial run (Sonnet):

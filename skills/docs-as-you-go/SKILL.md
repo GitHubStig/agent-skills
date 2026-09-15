@@ -69,10 +69,15 @@ been summarised or lost, before doing anything else:
 1. Read `AGENTS.md`, then `docs/README.md`.
 2. Read `spec.md` and `tasks.md` for every feature not marked Done.
 3. Read the Open threads in `AGENTS.md`.
-4. Say back, in a few lines, what shapes the next step: the key decisions and
-   why they were made, the rules (language, storage, constraints, gotchas),
-   what's parked, and what's left in any unfinished feature. Then wait for the
-   go-ahead.
+4. Say back, without being asked, even when some of it doesn't seem to matter
+   for the next step:
+   - each Accepted ADR's decision and why, one line each (the language, storage
+     and so on);
+   - each entry in "Things that will bite you", by name;
+   - what's parked;
+   - the tasks left in any unfinished feature.
+
+   Then wait for the go-ahead.
 
 Trust the docs over what you think you remember from the conversation. If they
 disagree with what the user is now asking, point out the difference and ask.
@@ -199,21 +204,25 @@ choice, in the present tense.
 - **A new feature's spec, plan and tasks are their own step.** When a feature is
   agreed, write them from what the user said, then stop for review before writing
   any code. Only when the user says to build straight away ("no need to show me
-  the spec", "just build it") write the docs and the code in one step.
+  the spec", "just build it") write the docs and the code in one step, still in
+  that order: spec, plan and tasks first, then the code.
 - **Tasks are ticked when verified:** after an automated check passes, or after a
   manual check the user agreed to. Never just because the code is written.
 - **Keep the user's words for decisions.** If they gave a reason, use it.
 
 ## Working in steps
 
-- **One step at a time.** Split a big request into steps that each make sense as
-  one commit. List the steps at the start of your reply, before any file is
-  written.
+- **One step at a time.** A step is one request from the user: finish all of
+  it, then stop. "Carry on" on a feature whose plan is approved means the whole
+  feature, not just the next task; stop early only for a real question. When a
+  request is big, say the steps before starting (for a feature, its plan's Order
+  is that list), and suggest splitting it so each part makes sense as one commit.
 - **Tests.** If the project has no automated tests yet, don't pick a setup
-  silently. Ask in that step's report which to use, with a recommendation (the
-  language's built-in test runner where there is one), and write the answer as
-  an ADR. Never decide on your own that a project doesn't need tests. Every bug
-  fix gets a test that fails without the fix.
+  silently, and never decide on your own that it doesn't need tests. Write the
+  setup you recommend (the language's built-in test runner where there is one)
+  as an ADR marked Proposed, and flag it in that step's report. It becomes
+  Accepted when the user goes ahead. Every bug fix starts with a test: run it,
+  see it fail, then fix.
 - **Verify with the project's own checks.** Formatting, linting, tests and build,
   whatever the project uses. For anything visible, look at it (run it, take a
   screenshot if you can). Check that links in changed docs resolve.
@@ -239,10 +248,11 @@ choice, in the present tense.
 Only commit when the user explicitly asks for a commit ("commit", "commit it",
 "make a commit"). When they do:
 
-1. **Look at what's changed first.** Stage everything. Before committing, say
-   what you're leaving out and why (an agent's local settings folder, say), and
-   mention anything unexpected: secrets, large binaries, data or build output
-   that should probably be ignored.
+1. **Look at what's changed first.** Stage everything except an agent's own
+   folders (its local settings or skills), which stay out unless the user says
+   otherwise. If anything else looks like it shouldn't be committed (secrets,
+   large binaries, data or build output), leave it out and ask. Say in your
+   report what was left out and why.
 2. **Write a Conventional Commits message.** A one-line subject:
    `type: summary` or `type(scope): summary`, imperative, lowercase start, no
    full stop, about 72 characters at most. Types: `feat`, `fix`, `docs`,

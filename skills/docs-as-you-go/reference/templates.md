@@ -133,8 +133,8 @@ with a short comment.>
 List and table entries appear only once their file exists. Feature statuses:
 In progress (spec written, tasks not all ticked), Done (every task ticked) and
 Parked (spec written, work stopped by the user). A feature that has only been
-talked about has no row; it goes in Open threads in `AGENTS.md`. Proposal statuses: Draft,
-Posted, Accepted, Declined.
+talked about has no row; it goes in Open threads in `AGENTS.md`. Proposal
+statuses: Draft, Posted, Accepted, Declined.
 
 ## docs/product.md
 
