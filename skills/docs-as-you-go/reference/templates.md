@@ -5,6 +5,10 @@ only the headings there's real content for; add the others, in this order, when
 their content arrives. Text in angle brackets says what goes there and is never
 copied as is.
 
+Links, list entries, tables and rows follow the same rule: add each one only
+once the file it points to exists. A new `docs/README.md` might list only
+`product.md`, with no ADR or feature table yet.
+
 ## Contents
 
 - [AGENTS.md](#agentsmd)
@@ -124,7 +128,8 @@ with a short comment.>
   Never edit an accepted ADR's decision; supersede it with a new one.
 ```
 
-Feature statuses: Planned, In progress, Done, Parked. Proposal statuses: Draft,
+List and table entries appear only once their file exists. Feature statuses:
+Planned, In progress, Done, Parked. Proposal statuses: Draft,
 Posted, Accepted, Declined.
 
 ## docs/product.md

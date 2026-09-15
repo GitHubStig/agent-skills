@@ -57,7 +57,7 @@ It never starts on its own. Once started, carry on prompting as usual.
 
 **Full templates, files that grow.** Each template lists every heading its doc can have. A new file only holds the sections there's real content for, and others are added in order as content arrives. So there are no "TBD" placeholders, and every doc still ends up in the same shape.
 
-**Docs read as if written before the build.** Present tense, what and why. No "we tried X first" or dated update notes. History belongs in git and in ADRs.
+**Docs read as if written before the build.** Present tense, what and why. No "we tried X first" or dated update notes. History belongs in git and in ADRs. When something changes, every doc outside the ADRs changes with it, including the specs of features finished long ago.
 
 **Decisions are superseded, not edited.** Each ADR is Proposed, Accepted, Rejected or Superseded. An accepted ADR's decision stays as it was, so the record shows what was decided and when. A change of mind gets a new ADR that points back to it, and the old one's status is the only line that changes.
 
@@ -73,3 +73,4 @@ It never starts on its own. Once started, carry on prompting as usual.
 | ---- | ------------ |
 | [`skills/docs-as-you-go/SKILL.md`](../../skills/docs-as-you-go/SKILL.md) | The skill: starting, resuming, triggers, writing rules, steps and commits |
 | [`skills/docs-as-you-go/reference/templates.md`](../../skills/docs-as-you-go/reference/templates.md) | A template for every doc |
+| [`trial-script.md`](trial-script.md) | Prompts to paste one at a time to test the skill on a tiny app, with a scorecard |

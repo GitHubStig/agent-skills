@@ -47,13 +47,16 @@ Start only when the user asks. Then:
 3. **Create only what there's content for.** Usually that's `AGENTS.md` and
    `docs/README.md` at first. Other files appear when their trigger is hit (see
    [When to write what](#when-to-write-what)). An empty repo with one sentence of
-   intent gets a two-line `AGENTS.md`, not ten empty files.
+   intent gets a two-line `AGENTS.md`, not ten empty files. Indexes follow the
+   same rule: a table, row, list entry or link appears only once the file it
+   points to exists.
 4. **Other instruction files point here.** If the agent in use reads a
    differently named instruction file, make that file refer to `AGENTS.md`
    instead of copying its content, so there's one set of rules.
-5. **State the working agreement** in a few lines: docs are updated every step,
-   work goes one step at a time, each step stops for review, commits only on
-   request. Then continue with whatever the user asked for.
+5. **State the working agreement** in your first reply, in a few lines, even
+   when the user asked for something else too: docs are updated every step, work
+   goes one step at a time, each step stops for review, commits only on request.
+   Then continue with whatever the user asked for.
 
 Templates for every file are in [reference/templates.md](reference/templates.md).
 
@@ -65,6 +68,9 @@ been summarised or lost, before doing anything else:
 1. Read `AGENTS.md`, then `docs/README.md`.
 2. Read `tasks.md` (and its `spec.md`) for any feature marked In progress.
 3. Read the Open threads in `AGENTS.md`.
+4. Say back, in a few lines, what shapes the next step: the key decisions and
+   rules (language, storage, constraints, gotchas), what's parked, and what's
+   left in the feature in progress. Then wait for the go-ahead.
 
 Trust the docs over what you think you remember from the conversation. If they
 disagree with what the user is now asking, point out the difference and ask.
@@ -103,6 +109,8 @@ Numbers are zero-padded and never reused: ADRs `0001`, features `001`.
 | An idea needs another project to change                                 | A draft in `docs/proposals/`; the user posts it              |
 | A task in a feature is finished and verified                            | Tick it in that feature's `tasks.md`                         |
 | A feature's last task is ticked                                         | Its status in the `docs/README.md` table becomes Done        |
+| A bug is fixed                                                          | A test that fails without the fix; a gotcha if it could recur |
+| The user reverses an earlier decision                                   | A superseding ADR, and every doc that mentions the old choice |
 
 Update the index tables in `docs/README.md` in the same step as the file they
 list.
@@ -150,14 +158,20 @@ Every ADR has a status:
   suggest a decision the user hasn't agreed to yet. Say so in the step report.
 - **Accepted:** the user agreed. Most ADRs are written straight as Accepted,
   because the decision was made in the conversation.
+- **Rejected:** a Proposed ADR the user turned down. Delete it instead, unless
+  the reasons are worth remembering.
 - **Superseded by NNNN:** a later ADR replaced it.
 
 Once an ADR is Accepted, never edit its decision. When the user changes their
 mind, write a new ADR that supersedes it: its Context names the old ADR and what
-changed. In the old ADR, change only the status line, and update both rows in the
-`docs/README.md` table. Fixing a typo or a broken link is fine; changing what was
-decided is not. A Proposed ADR that's rejected is deleted, or kept as Rejected if
-the reasons are worth remembering.
+changed. In the old ADR, change only the status line. In the `docs/README.md`
+table, add "(superseded by NNNN)" to the old row and add the new one. Fixing a
+typo or a broken link is fine; changing what was decided is not.
+
+Then clean up everything else. Search every doc outside `docs/adr/` for the old
+choice: its name, file names, commands and formats. That includes the spec, plan
+and tasks of features finished long ago. Rewrite each mention to describe the new
+choice, in the present tense.
 
 ## How the docs are written
 
@@ -169,20 +183,29 @@ the reasons are worth remembering.
   the project does and why. No "we first tried…", "update:", dated change notes
   or "how it went" sections. History lives in git and ADRs. (ADR Context sections
   are the exception: they explain the situation at the time.)
+- **Everything outside the ADRs describes the project as it is now.** That
+  includes finished features' spec, plan and tasks. When something changes, they
+  change with it.
 - **Plain words, short sentences.** Explain why, not just what. Name files and
   commands exactly.
 - **`AGENTS.md` stays short.** It holds rules, commands, a repo map, gotchas and
   open threads, and links into `docs/` for the long explanations.
-- **Specs come before code.** When a feature is agreed, write its spec and plan
-  from what the user said, and show them at the step's review. If the user jumps
-  straight into code, write the spec from the conversation in the same step.
-- **Tasks are ticked when verified,** not when the code is written.
+- **A new feature's spec, plan and tasks are their own step.** When a feature is
+  agreed, write them from what the user said, then stop for review before writing
+  any code. Only when the user says to build straight away ("no need to show me
+  the spec", "just build it") write the docs and the code in one step.
+- **Tasks are ticked when verified:** after an automated check passes, or after a
+  manual check the user agreed to. Never just because the code is written.
 - **Keep the user's words for decisions.** If they gave a reason, use it.
 
 ## Working in steps
 
 - **One step at a time.** Split a big request into steps that each make sense as
   one commit. Say what the steps are before starting the first.
+- **Tests.** If the project has no automated tests yet, offer to set them up,
+  using the language's built-in test runner where there is one, with a
+  recommendation, and record the choice. Never decide on your own that a project
+  doesn't need tests. Every bug fix gets a test that fails without the fix.
 - **Verify with the project's own checks.** Formatting, linting, tests and build,
   whatever the project uses. For anything visible, look at it (run it, take a
   screenshot if you can). Check that links in changed docs resolve.
@@ -192,7 +215,8 @@ the reasons are worth remembering.
   - **Next:** the next step, and any question for the user.
 
   Then offer a review and a commit, and wait. Don't start the next step until the
-  user says so.
+  user says so. "Carry on", "continue", "next" and "looks good" are a go-ahead
+  for the next step, never a request to commit.
 - **Offer options with a recommendation** when there's a real choice. Don't pick
   silently, and don't list options without saying which you'd take.
 - **Ask when something is genuinely unclear** rather than guessing.
@@ -204,11 +228,13 @@ the reasons are worth remembering.
 
 ## Commits
 
-Only commit when the user asks. When they do:
+Only commit when the user explicitly asks for a commit ("commit", "commit it",
+"make a commit"). When they do:
 
-1. **Look at what's changed first.** Stage everything, but mention anything
-   unexpected (secrets, large binaries, data or build output that should probably
-   be ignored) before committing.
+1. **Look at what's changed first.** Stage everything. Before committing, say
+   what you're leaving out and why (an agent's local settings folder, say), and
+   mention anything unexpected: secrets, large binaries, data or build output
+   that should probably be ignored.
 2. **Write a Conventional Commits message.** A one-line subject:
    `type: summary` or `type(scope): summary`, imperative, lowercase start, no
    full stop, about 72 characters at most. Types: `feat`, `fix`, `docs`,
