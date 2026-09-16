@@ -76,8 +76,8 @@ been summarised or lost, before doing anything else:
 4. Read the Open threads in `AGENTS.md`.
 5. Say back, without being asked, even when some of it doesn't seem to matter
    for the next step:
-   - each Accepted ADR's decision and why, one line each (the language, storage
-     and so on);
+   - each Accepted ADR's decision with its reason, one line each (the language,
+     storage, test setup and so on). Never a decision without its reason;
    - each entry in "Things that will bite you", by name;
    - what's parked;
    - the tasks left in any unfinished feature.
@@ -173,7 +173,8 @@ reasoning where they gave it. Mention it in the step report ("recorded as ADR
 line.
 
 A decision that also governs future work belongs in both places: the rule in
-`AGENTS.md` Rules, pointing at the ADR, and the reasoning in the ADR. "No
+`AGENTS.md` Rules with a one-line reason, pointing at the ADR, and the full
+reasoning in the ADR, so someone who reads only `AGENTS.md` still knows why. "No
 third-party packages" is a rule someone has to follow tomorrow, so an ADR alone
 isn't enough.
 
@@ -195,10 +196,12 @@ changed. In the old ADR, change only the status line. In the `docs/README.md`
 table, add "(superseded by NNNN)" to the old row and add the new one. Fixing a
 typo or a broken link is fine; changing what was decided is not.
 
-Then clean up everything else. Search every doc outside `docs/adr/` for the old
-choice: its name, file names, commands and formats. That includes the spec, plan
-and tasks of features finished long ago. Rewrite each mention to describe the new
-choice, in the present tense.
+Then clean up everything else. Search `AGENTS.md` and every doc outside
+`docs/adr/` for the old choice: its name, file names, commands and formats, and
+the functions, libraries and mechanisms that came with it (a serialiser, a
+parser). That includes Rules, "Things that will bite you", and the spec, plan
+and tasks of features finished long ago. Rewrite each mention to describe the
+new choice, in the present tense, or remove it if it no longer applies.
 
 ## How the docs are written
 
@@ -251,7 +254,9 @@ choice, in the present tense.
   a test runner and the choice feels obvious.
 - **A bug fix starts with a failing test,** in this order: add the case to the
   test file, run the suite, quote the failing output in your report, then change
-  the code. Reproducing the bug by hand isn't the same thing.
+  the code. Reproducing the bug by hand isn't the same thing. The test has to
+  fail on an assertion that shows the bug, not on a missing import or a type
+  error, and the output is quoted word for word, not paraphrased.
 - **Verify with the project's own checks.** Formatting, linting, tests and build,
   whatever the project uses. For anything visible, look at it (run it, take a
   screenshot if you can). Check that links in changed docs resolve.
@@ -273,7 +278,12 @@ choice, in the present tense.
 - **Spikes before building.** When an approach is uncertain, try it in a
   throwaway location first. Spike code is never committed; what it showed goes in
   the plan or an ADR.
-- **Temporary files** go outside the repo or are deleted before the step ends.
+- **Checks never touch real data.** A manual check reads and writes a temporary
+  copy, passed in through a path argument or an environment variable, never the
+  project's real data files. Overwriting them "just to test" can destroy what the
+  user can't get back.
+- **Temporary files** go in the system's temp folder (never the filesystem root)
+  or are deleted before the step ends.
 - **Match the surrounding code:** its naming, comment density and idioms.
 
 ## Commits
@@ -317,6 +327,8 @@ feat: add CSV export for reports
 
 When the user says they're done for now, or the session is ending:
 
-1. Do a final docs pass: tasks ticked, feature statuses right, Open threads
-   current, including anything half-discussed.
-2. Report what's uncommitted, if anything, and offer a commit.
+1. Do a final docs pass first, even when the same message also asks for a
+   commit: tasks ticked, feature statuses right, Open threads current (including
+   anything half-discussed), and Rules and "Things that will bite you" still
+   true. Say in the report what the pass checked.
+2. Then commit if asked. Otherwise report what's uncommitted and offer a commit.

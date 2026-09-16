@@ -135,8 +135,9 @@ put ↑ next to high values and ↓ next to low ones, and add `lab-log flagged` 
 some results are written like "<5" instead of a number, and add crashes on them. treat "<5" as below 5, and only flag it if the range says so
 ```
 
-- Fixed, with a test it ran and saw fail before the fix: the failing output is
-  quoted in the report, and the test file is older than the fix.
+- Fixed, with a test it ran and saw fail before the fix: it fails on an
+  assertion (not a missing import or type error), the output is quoted word for
+  word in the report, and the test file is older than the fix.
 - The gotcha is in "Things that will bite you" in `AGENTS.md` (or the rule is in
   the spec), in plain words.
 
@@ -200,6 +201,9 @@ actually, switch storage from JSON to CSV so I can open it in a spreadsheet
   plan and tasks and file names like `sample-results.json`. Search the docs for
   "JSON": only the ADRs should mention it, with no "we used to…", "previously" or
   "update:" wording anywhere.
+- Search `AGENTS.md` too, including Rules and "Things that will bite you", for
+  JSON and the functions that came with it (such as `JSON.stringify` or
+  `json.dumps`).
 
 ### 14. Commit and stop
 
@@ -208,8 +212,9 @@ commit it, and that's it for today
 ```
 
 - Commit checks as in step 5.
-- A final docs pass: tasks and statuses current, and Open threads that the build
-  has since settled are gone.
+- A final docs pass runs **before** the commit, and the report says what it
+  checked: tasks and statuses current, and Open threads that the build has since
+  settled are gone.
 - Every doc written during the run is in the `docs/README.md` index, including
   `development.md`.
 - Says whether anything is left uncommitted.
@@ -236,14 +241,15 @@ If it answers all four from the docs alone, the docs did their job.
 | 5 | Agent folder left out and mentioned; conventional message, bullets, no attribution, not pushed | |
 | 6 | Asked or offered options instead of guessing | |
 | 7 | Built straight away when told, docs before code; new feature folder; 001 marked Done | |
-| 8 | Gotcha recorded in plain words; test seen failing before the fix | |
+| 8 | Gotcha recorded; test fails on an assertion before the fix, quoted word for word | |
 | 9 | Parked item in Open threads | |
 | 10 | Stopped after the spec, before code; row says In progress | |
 | 11 | Resumed from the docs; said back decisions with reasons, gotchas, parked items, tasks left; waited | |
 | 12 | Whole feature finished in one go; tasks ticked after tests; didn't commit | |
-| 13 | Old row marked superseded; no JSON outside the ADRs; no history wording | |
-| 14 | Final docs pass, settled threads cleared, every doc indexed; commit clean | |
+| 13 | Old row marked superseded; no JSON outside the ADRs, AGENTS.md included; no history wording | |
+| 14 | Docs pass before the commit, named in the report; settled threads cleared; every doc indexed; commit clean | |
 | Any | Stopped for review at the end of every step | |
+| Any | Manual checks never wrote to the real data file | |
 
 Not covered by this script: proposals, Rejected ADRs, and the architecture
 overview (a tool this small may never need one).

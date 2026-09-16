@@ -4,6 +4,19 @@ Versioning follows [semver](https://semver.org/). The skill has no scripts to
 report a version, and `SKILL.md` frontmatter supports only `name` and
 `description`, so the version lives here.
 
+## 0.9.0
+
+Changes from the ninth trial run (Sonnet), where manual checks overwrote the real data file:
+
+- Checks never touch real data: manual checks use a temporary copy through a path argument or
+  environment variable, and temporary files go in the system's temp folder.
+- The final docs pass runs even when the same message asks for a commit, checks that Rules and
+  gotchas are still true, and is named in the report.
+- A reversed decision's cleanup searches `AGENTS.md` too, and for the old choice's functions and
+  mechanisms as well as its name.
+- A bug fix's failing test fails on an assertion, quoted word for word. Resuming never gives a
+  decision without its reason, and a rule in `AGENTS.md` carries a one-line reason.
+
 ## 0.8.0
 
 Changes from the eighth trial run (Sonnet), where code was written before the docs and the report
