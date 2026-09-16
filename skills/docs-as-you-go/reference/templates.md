@@ -43,8 +43,8 @@ everything.>
 - **Each feature's spec, plan and tasks:** [docs/features/](docs/features/)
 - **Running, checks and dependencies:** [docs/development.md](docs/development.md)
 
-**Status (<month year>):** <where the project is>. Open threads are listed at
-the end.
+**Status:** <the project as a whole: in development, feature complete, released>.
+Open threads are listed at the end.
 
 ## Commands
 

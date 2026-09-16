@@ -4,6 +4,17 @@ Versioning follows [semver](https://semver.org/). The skill has no scripts to
 report a version, and `SKILL.md` frontmatter supports only `name` and
 `description`, so the version lives here.
 
+## 0.5.0
+
+Changes from the fifth trial run (Sonnet, 15 of 16 checks passed):
+
+- Starting writes `AGENTS.md` and `docs/README.md` in the first reply, from whatever the user has
+  said. Questions go in Open threads and are asked after the files exist.
+- Proposed is only for a setup the user must pick, such as the test runner. A decision they
+  haven't made waits in Open threads, so the ADR records their reasons, not the agent's.
+- The `AGENTS.md` Status line says what the project is, never how far the build has got and never
+  a date. Progress lives in the feature table.
+
 ## 0.4.0
 
 Changes from the fourth trial run (Sonnet):

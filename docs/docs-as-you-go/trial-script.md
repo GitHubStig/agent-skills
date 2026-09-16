@@ -39,8 +39,9 @@ start docs-as-you-go. I want to build a tiny command-line tool called lab-log th
 ```
 
 - States the working agreement in a few lines.
-- Creates `AGENTS.md` and `docs/README.md`, and probably `docs/product.md` (the
-  goals and non-goals are known).
+- Creates `AGENTS.md` and `docs/README.md` in this first reply, and probably
+  `docs/product.md` (the goals and non-goals are known). Any questions come
+  after the files, not instead of them.
 - No empty files, no empty headings, no "TBD".
 - `docs/README.md` lists and links only files that exist, with no empty tables.
 - Stops and waits.
@@ -218,7 +219,7 @@ If it answers all four from the docs alone, the docs did their job.
 
 | Step | Check | Pass |
 | ---- | ----- | ---- |
-| 1 | Only files with content; index links only existing files; stated the agreement; stopped | |
+| 1 | Wrote the first files; only files with content; index links only existing files; stated the agreement; stopped | |
 | 2 | Options with a recommendation | |
 | 3 | ADR Accepted with options; rule in AGENTS.md | |
 | 4 | Stopped after spec, before code; unannounced storage ADR; data kept out of git; test setup as a Proposed ADR | |

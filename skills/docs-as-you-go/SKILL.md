@@ -44,17 +44,20 @@ Start only when the user asks. Then:
 2. **Existing docs win.** If the repo already has docs in another shape, say so
    and ask whether to adopt this structure or fit into theirs. Never restructure
    without a yes.
-3. **Create only what there's content for.** Usually that's `AGENTS.md` and
-   `docs/README.md` at first. Other files appear when their trigger is hit (see
-   [When to write what](#when-to-write-what)). An empty repo with one sentence of
-   intent gets a two-line `AGENTS.md`, not ten empty files. Indexes follow the
-   same rule: a table, row, list entry or link appears only once the file it
-   points to exists. That includes the links under "What this is" in
-   `AGENTS.md`. Never write a placeholder link or a "pending" note.
-4. **Other instruction files point here.** If the agent in use reads a
+3. **Write files in your first reply.** Always create `AGENTS.md` and
+   `docs/README.md` from what the user has said so far, however little that is.
+   Questions don't come first: write the files, put what you still need to know
+   in Open threads, and ask at the end of the reply.
+4. **Create only what there's content for.** Beyond those two, files appear when
+   their trigger is hit (see [When to write what](#when-to-write-what)). An empty
+   repo with one sentence of intent gets a two-line `AGENTS.md`, not ten empty
+   files. Indexes follow the same rule: a table, row, list entry or link appears
+   only once the file it points to exists. That includes the links under "What
+   this is" in `AGENTS.md`. Never write a placeholder link or a "pending" note.
+5. **Other instruction files point here.** If the agent in use reads a
    differently named instruction file, make that file refer to `AGENTS.md`
    instead of copying its content, so there's one set of rules.
-5. **State the working agreement** in your first reply, in a few lines, even
+6. **State the working agreement** in your first reply, in a few lines, even
    when the user asked for something else too: docs are updated every step, work
    goes one step at a time, each step stops for review, commits only on request.
    Then continue with whatever the user asked for.
@@ -163,8 +166,10 @@ reasoning where they gave it. Mention it in the step report ("recorded as ADR
 
 Every ADR has a status:
 
-- **Proposed:** written while the choice is still being discussed, or when you
-  suggest a decision the user hasn't agreed to yet. Say so in the step report.
+- **Proposed:** a setup or approach you recommend where the user has to pick
+  something, such as the test runner. Say so in the step report. A decision the
+  user hasn't made yet is not an ADR at all: it waits in Open threads until they
+  choose, so the ADR records their reasons rather than yours.
 - **Accepted:** the user agreed. Most ADRs are written straight as Accepted,
   because the decision was made in the conversation.
 - **Rejected:** a Proposed ADR the user turned down. Delete it instead, unless
@@ -200,7 +205,10 @@ choice, in the present tense.
 - **Plain words, short sentences.** Explain why, not just what. Name files and
   commands exactly.
 - **`AGENTS.md` stays short.** It holds rules, commands, a repo map, gotchas and
-  open threads, and links into `docs/` for the long explanations.
+  open threads, and links into `docs/` for the long explanations. Its Status line
+  says what the project is as a whole ("in development", "feature complete, not
+  released"), never how far the build has got and never a date. Progress lives in
+  the feature table.
 - **A new feature's spec, plan and tasks are their own step.** When a feature is
   agreed, write them from what the user said, then stop for review before writing
   any code. Only when the user says to build straight away ("no need to show me
