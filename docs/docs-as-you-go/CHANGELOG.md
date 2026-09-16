@@ -4,6 +4,19 @@ Versioning follows [semver](https://semver.org/). The skill has no scripts to
 report a version, and `SKILL.md` frontmatter supports only `name` and
 `description`, so the version lives here.
 
+## 0.7.0
+
+Changes from the seventh trial run (Sonnet), where a harness's own trailer reached the first
+commit:
+
+- No attribution is now checked, not just stated: read the message back after committing and
+  strip such a line with `git commit --amend`, the one amend that needs no asking. The rule is in
+  the `AGENTS.md` template too, so it survives a fresh session.
+- "Link only what exists" covers folders, and any new doc file or folder is added to the
+  `docs/README.md` index in the same step.
+- A decision that governs future work goes in both places: the rule in `AGENTS.md`, the reasoning
+  in the ADR.
+
 ## 0.6.0
 
 Changes from the sixth trial run (Sonnet, 13 of 16 checks clean and none failed):

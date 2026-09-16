@@ -43,7 +43,8 @@ start docs-as-you-go. I want to build a tiny command-line tool called lab-log th
   `docs/product.md` (the goals and non-goals are known). Any questions come
   after the files, not instead of them.
 - No empty files, no empty headings, no "TBD".
-- `docs/README.md` lists and links only files that exist, with no empty tables.
+- `docs/README.md` and `AGENTS.md` link only files and folders that exist, with
+  no empty tables. `features/` isn't linked before a feature exists.
 - Stops and waits.
 
 ### 2. Options
@@ -63,7 +64,8 @@ go with your pick
 
 - An ADR is **Accepted**, with Options considered filled in, and a row in the
   `docs/README.md` table.
-- "No third-party packages" is a rule in `AGENTS.md`.
+- "No third-party packages" is a rule in `AGENTS.md` Rules as well, pointing at
+  the ADR.
 - Commands (run, test) are in `AGENTS.md` once they exist.
 
 ### 4. A feature, plus decisions nobody announced
@@ -102,7 +104,8 @@ looks good, commit it
 - Stages everything except the agent's own folder (the copied skill), and says
   in its report what it left out.
 - Conventional subject line, with bullets for separate changes.
-- **No** `Co-authored-by` or "Generated with" line. Check with `git log -1`.
+- **No** `Co-authored-by` or "Generated with" line. Check with `git log -1`. If
+  the agent's harness added one, it should notice and strip it.
 - Docs and code are in the same commit. Nothing is pushed.
 
 ### 6. Something vague
@@ -205,6 +208,8 @@ commit it, and that's it for today
 - Commit checks as in step 5.
 - A final docs pass: tasks and statuses current, and Open threads that the build
   has since settled are gone.
+- Every doc written during the run is in the `docs/README.md` index, including
+  `development.md`.
 - Says whether anything is left uncommitted.
 
 ## Optional: the cold-start test
@@ -223,7 +228,7 @@ If it answers all four from the docs alone, the docs did their job.
 | ---- | ----- | ---- |
 | 1 | Wrote the first files; only files with content; index links only existing files; stated the agreement; stopped | |
 | 2 | Options with a recommendation | |
-| 3 | ADR Accepted with options; rule in AGENTS.md | |
+| 3 | ADR Accepted with options; constraint in AGENTS.md Rules too | |
 | 4 | Stopped after spec, before code; unannounced storage ADR; real-data rule; test setup as a Proposed ADR | |
 | 4b | Tests run; tasks ticked only after they pass; test ADR Accepted; data kept out of git | |
 | 5 | Agent folder left out and mentioned; conventional message, bullets, no attribution, not pushed | |
@@ -235,7 +240,7 @@ If it answers all four from the docs alone, the docs did their job.
 | 11 | Resumed from the docs; said back decisions with reasons, gotchas, parked items, tasks left; waited | |
 | 12 | Whole feature finished in one go; tasks ticked after tests; didn't commit | |
 | 13 | Old row marked superseded; no JSON outside the ADRs; no history wording | |
-| 14 | Final docs pass, settled threads cleared; commit clean | |
+| 14 | Final docs pass, settled threads cleared, every doc indexed; commit clean | |
 | Any | Stopped for review at the end of every step | |
 
 Not covered by this script: proposals, Rejected ADRs, and the architecture

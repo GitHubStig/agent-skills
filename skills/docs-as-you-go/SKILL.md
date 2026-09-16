@@ -53,7 +53,8 @@ Start only when the user asks. Then:
    repo with one sentence of intent gets a two-line `AGENTS.md`, not ten empty
    files. Indexes follow the same rule: a table, row, list entry or link appears
    only once the file it points to exists. That includes the links under "What
-   this is" in `AGENTS.md`. Never write a placeholder link or a "pending" note.
+   this is" in `AGENTS.md`, and folders: don't link `features/` until a feature
+   is in it. Never write a placeholder link or a "pending" note.
 5. **Other instruction files point here.** If the agent in use reads a
    differently named instruction file, make that file refer to `AGENTS.md`
    instead of copying its content, so there's one set of rules.
@@ -119,6 +120,7 @@ Numbers are zero-padded and never reused: ADRs `0001`, features `001`.
 | The user parks something ("later", "park it", "not now")                | "Open threads" in `AGENTS.md`, with enough to resume it      |
 | An idea needs another project to change                                 | A draft in `docs/proposals/`; the user posts it              |
 | An open thread is settled, or overtaken by what got built               | Remove it, or fold the answer into the rule, ADR or spec it became |
+| Any new doc file or folder is created                                   | Its link or row in `docs/README.md`, in the same step        |
 | A task in a feature is finished and verified                            | Tick it in that feature's `tasks.md`                         |
 | A feature's spec is written                                             | Its row in the `docs/README.md` table says In progress       |
 | A feature's last task is ticked                                         | Its status in the `docs/README.md` table becomes Done        |
@@ -166,7 +168,13 @@ Write an ADR when someone could reasonably have chosen differently. Record the
 options that were on the table and why the chosen one won, in the user's
 reasoning where they gave it. Mention it in the step report ("recorded as ADR
 0007"). A small preference that needed no weighing up goes into Rules in
-`AGENTS.md` instead. When unsure whether it's worth an ADR, ask in one line.
+`AGENTS.md` instead of an ADR. When unsure whether it's worth an ADR, ask in one
+line.
+
+A decision that also governs future work belongs in both places: the rule in
+`AGENTS.md` Rules, pointing at the ADR, and the reasoning in the ADR. "No
+third-party packages" is a rule someone has to follow tomorrow, so an ADR alone
+isn't enough.
 
 Every ADR has a status:
 
@@ -275,9 +283,12 @@ Only commit when the user explicitly asks for a commit ("commit", "commit it",
    per change. A single change needs only the subject.
 4. **No attribution.** Never end with `Co-authored-by`, "Generated with", or any
    line crediting an AI, agent or tool, even if the agent in use adds one by
-   default.
+   default. Check it: after committing, read the message back with `git log -1`,
+   and if such a line is there anyway, strip it with `git commit --amend`. This
+   is the one amend you don't have to be asked for.
 5. **Docs go in the same commit** as the code they describe.
-6. **Never push, amend, rebase or force-push** unless the user asks.
+6. **Never push, amend, rebase or force-push** unless the user asks, apart from
+   stripping an attribution line as above.
 
 ```
 fix: keep the filter panel open after saving

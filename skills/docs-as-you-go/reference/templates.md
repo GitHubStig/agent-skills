@@ -68,6 +68,8 @@ with a short comment.>
 - **One step at a time.** Finish a step, verify it, then stop and summarise what
   changed, what was checked and what's next. The owner reviews and commits.
 - **Never commit** unless asked. Never push.
+- **No attribution lines** in commit messages: no `Co-authored-by`, no
+  "Generated with".
 - **Docs are updated in every step.** Nothing important lives only in the chat.
 - **Ask when something is genuinely unclear** instead of guessing.
 
