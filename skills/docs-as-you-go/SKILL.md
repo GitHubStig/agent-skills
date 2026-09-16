@@ -113,6 +113,7 @@ Numbers are zero-padded and never reused: ADRs `0001`, features `001`.
 | The user explains what the project is, who it's for or what it won't do | `docs/product.md`, and "What this is" in `AGENTS.md`         |
 | A choice between real alternatives is made (see below)                  | A new ADR, and a row in the `docs/README.md` table           |
 | A feature is agreed, before its code                                    | `features/NNN-name/spec.md`, `plan.md`, `tasks.md`, table row |
+| A feature is agreed and the project has no automated tests yet          | An ADR marked Proposed for the test setup, flagged in the report |
 | Two or more parts start to talk to each other, or data gets a shape     | `docs/architecture/overview.md`                              |
 | Commands to run, check, test or build settle                            | "Commands" in `AGENTS.md`; details in `docs/development.md`  |
 | A rule is set ("always…", "never…")                                     | "Rules" in `AGENTS.md`; an ADR if it needed weighing up      |
@@ -234,6 +235,9 @@ choice, in the present tense.
 
 ## Working in steps
 
+- **Docs before code.** Don't open a source file until that feature's
+  `spec.md`, `plan.md` and `tasks.md` exist on disk. This holds even when the
+  user says to build straight away: same step, docs first.
 - **One step at a time.** A step is one request from the user: finish all of
   it, then stop. "Carry on" on a feature whose plan is approved means the whole
   feature, not just the next task; stop early only for a real question. When a
@@ -243,15 +247,22 @@ choice, in the present tense.
   silently, and never decide on your own that it doesn't need tests. Write the
   setup you recommend (the language's built-in test runner where there is one)
   as an ADR marked Proposed, and flag it in that step's report. It becomes
-  Accepted when the user goes ahead. Every bug fix starts with a test: run it,
-  see it fail, then fix.
+  Accepted when the user goes ahead. Write that ADR even when the language ships
+  a test runner and the choice feels obvious.
+- **A bug fix starts with a failing test,** in this order: add the case to the
+  test file, run the suite, quote the failing output in your report, then change
+  the code. Reproducing the bug by hand isn't the same thing.
 - **Verify with the project's own checks.** Formatting, linting, tests and build,
   whatever the project uses. For anything visible, look at it (run it, take a
   screenshot if you can). Check that links in changed docs resolve.
 - **Stop and report** at the end of each step, in three short parts:
   - **Changed:** code and docs touched.
-  - **Checked:** what was verified, and what wasn't and why.
+  - **Checked:** what was verified, and what wasn't and why. For a feature, say
+    whether its spec, plan and tasks were on disk before the first code edit.
   - **Next:** the next step, and any question for the user.
+
+  Report what actually happened, not what should have happened. If you worked
+  out of order, say so rather than describing the order you meant to follow.
 
   Then offer a review and a commit, and wait. Don't start the next step until the
   user says so. "Carry on", "continue", "next" and "looks good" are a go-ahead

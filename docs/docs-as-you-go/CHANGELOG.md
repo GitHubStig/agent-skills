@@ -4,6 +4,20 @@ Versioning follows [semver](https://semver.org/). The skill has no scripts to
 report a version, and `SKILL.md` frontmatter supports only `name` and
 `description`, so the version lives here.
 
+## 0.8.0
+
+Changes from the eighth trial run (Sonnet), where code was written before the docs and the report
+said otherwise:
+
+- Docs before code is its own rule in "Working in steps": no source file is opened until that
+  feature's spec, plan and tasks are on disk, "just build it" included. The step report has to say
+  whether they were.
+- Reports say what actually happened, not what should have happened.
+- The test-setup ADR has its own trigger row, fired when a feature is agreed and there are no
+  tests yet, even when the language ships a test runner.
+- A bug fix's order is spelled out: add the test case, run the suite, quote the failing output,
+  then change the code.
+
 ## 0.7.0
 
 Changes from the seventh trial run (Sonnet), where a harness's own trailer reached the first

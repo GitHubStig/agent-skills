@@ -82,6 +82,7 @@ first feature: `lab-log add` takes a test name, value, unit, low and high range 
   samples can wait for 4b, when the code exists.
 - If there's no test setup yet, proposes one as an ADR marked **Proposed** and
   flags it in the report, rather than picking one silently or skipping tests.
+  This applies even when the language ships a test runner.
 - Stops after the spec, plan and tasks, **before any code**, because the prompt
   didn't say to build straight away.
 
@@ -124,7 +125,7 @@ put ↑ next to high values and ↓ next to low ones, and add `lab-log flagged` 
 ```
 
 - Builds straight away, in one step, but still writes the spec, plan and tasks
-  before the code.
+  before the code. Check the file times, not the report's claim.
 - A new `features/002-…` folder, or a clear reason it belongs in 001.
 - Feature 001 is marked Done in the table if all its tasks are ticked.
 
@@ -134,7 +135,8 @@ put ↑ next to high values and ↓ next to low ones, and add `lab-log flagged` 
 some results are written like "<5" instead of a number, and add crashes on them. treat "<5" as below 5, and only flag it if the range says so
 ```
 
-- Fixed, with a test it ran and saw fail before the fix.
+- Fixed, with a test it ran and saw fail before the fix: the failing output is
+  quoted in the report, and the test file is older than the fix.
 - The gotcha is in "Things that will bite you" in `AGENTS.md` (or the rule is in
   the spec), in plain words.
 
@@ -169,8 +171,8 @@ resume docs-as-you-go
 - Reads `AGENTS.md`, `docs/README.md`, the ADRs, and the trend feature's spec
   and tasks before doing anything else.
 - Says back, without asking you to repeat anything: the language and why, JSON
-  storage and why, the test setup, the "<5" gotcha by name, the parked browser
-  chart, and the trend feature's tasks left.
+  storage and why, the test setup and why, the "<5" gotcha by name, the parked
+  browser chart, and the trend feature's tasks left.
 - Waits for your go-ahead before starting work.
 
 ### 12. Finish
