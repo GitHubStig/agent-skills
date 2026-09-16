@@ -70,9 +70,10 @@ At the start of every new session, and whenever earlier conversation may have
 been summarised or lost, before doing anything else:
 
 1. Read `AGENTS.md`, then `docs/README.md`.
-2. Read `spec.md` and `tasks.md` for every feature not marked Done.
-3. Read the Open threads in `AGENTS.md`.
-4. Say back, without being asked, even when some of it doesn't seem to matter
+2. Read every ADR not marked Superseded or Rejected.
+3. Read `spec.md` and `tasks.md` for every feature not marked Done.
+4. Read the Open threads in `AGENTS.md`.
+5. Say back, without being asked, even when some of it doesn't seem to matter
    for the next step:
    - each Accepted ADR's decision and why, one line each (the language, storage
      and so on);
@@ -117,6 +118,7 @@ Numbers are zero-padded and never reused: ADRs `0001`, features `001`.
 | Something surprising breaks and gets worked around                      | "Things that will bite you" in `AGENTS.md`                   |
 | The user parks something ("later", "park it", "not now")                | "Open threads" in `AGENTS.md`, with enough to resume it      |
 | An idea needs another project to change                                 | A draft in `docs/proposals/`; the user posts it              |
+| An open thread is settled, or overtaken by what got built               | Remove it, or fold the answer into the rule, ADR or spec it became |
 | A task in a feature is finished and verified                            | Tick it in that feature's `tasks.md`                         |
 | A feature's spec is written                                             | Its row in the `docs/README.md` table says In progress       |
 | A feature's last task is ticked                                         | Its status in the `docs/README.md` table becomes Done        |
@@ -132,7 +134,9 @@ This is the rule the skill exists for.
 
 - **Every step ends with a docs pass.** Before reporting a step as done, update
   every doc the step affected, and check that every link in those docs resolves.
-  Docs-only steps included. Code and its docs are one change.
+  Docs-only steps included. Code and its docs are one change. Re-read Open
+  threads as part of it and clear the ones the step settled, rather than only
+  adding to them.
 - **Decisions are written when they're made,** not at the end of the feature.
 - **Before anything long** (a big refactor, a long run, a research dive), write
   down where things stand: tick tasks, add open questions to `tasks.md` or Open
@@ -216,6 +220,8 @@ choice, in the present tense.
   that order: spec, plan and tasks first, then the code.
 - **Tasks are ticked when verified:** after an automated check passes, or after a
   manual check the user agreed to. Never just because the code is written.
+- **`tasks.md` holds build and verify steps only.** The docs pass isn't a task;
+  it happens at the end of every step anyway, so a task for it would tick itself.
 - **Keep the user's words for decisions.** If they gave a reason, use it.
 
 ## Working in steps

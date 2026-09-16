@@ -4,6 +4,18 @@ Versioning follows [semver](https://semver.org/). The skill has no scripts to
 report a version, and `SKILL.md` frontmatter supports only `name` and
 `description`, so the version lives here.
 
+## 0.6.0
+
+Changes from the sixth trial run (Sonnet, 13 of 16 checks clean and none failed):
+
+- Resuming reads every ADR that isn't superseded or rejected, so the say-back can give the
+  reasons behind each decision.
+- A settled open thread is removed, or folded into the rule, ADR or spec it became, and the docs
+  pass re-reads Open threads instead of only adding to them.
+- `tasks.md` holds build and verify steps only. The docs pass is not a task, so the "last task
+  ticked" trigger can't fire on a task that ticks itself.
+- Trial script: `.gitignore` and samples are expected at 4b, when the code exists, not at 4.
+
 ## 0.5.0
 
 Changes from the fifth trial run (Sonnet, 15 of 16 checks passed):

@@ -310,10 +310,10 @@ The new ADR's Context names the one it replaces and what changed.
 
 - [ ] <Small, checkable step>
 - [ ] <Small, checkable step>
-- [ ] Docs: <which docs this feature adds or changes>
 ```
 
-Tick a task only once it's verified.
+Tick a task only once it's verified. Tasks are build and verify steps; the docs
+pass at the end of every step is not one of them.
 
 ## docs/development.md
 

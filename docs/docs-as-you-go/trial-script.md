@@ -76,8 +76,8 @@ first feature: `lab-log add` takes a test name, value, unit, low and high range 
   and the feature row shows In progress.
 - Records the storage choice (JSON, not a database) as an ADR, even though you
   didn't call it a decision.
-- Adds the real-data rule to `AGENTS.md`, puts the data file in `.gitignore`,
-  and uses made-up samples.
+- Adds the real-data rule to `AGENTS.md`. The `.gitignore` and the made-up
+  samples can wait for 4b, when the code exists.
 - If there's no test setup yet, proposes one as an ADR marked **Proposed** and
   flags it in the report, rather than picking one silently or skipping tests.
 - Stops after the spec, plan and tasks, **before any code**, because the prompt
@@ -91,6 +91,7 @@ spec looks right, build it
 
 - Builds feature 001 and runs the tests. Tasks are ticked only after they pass.
 - The Proposed test setup ADR is now Accepted.
+- `.gitignore` covers the real data file, and the samples are made up.
 
 ### 5. Commit
 
@@ -162,8 +163,8 @@ new conversation). This stands in for the conversation being lost or summarised.
 resume docs-as-you-go
 ```
 
-- Reads `AGENTS.md`, `docs/README.md`, and the trend feature's spec and tasks
-  before doing anything else.
+- Reads `AGENTS.md`, `docs/README.md`, the ADRs, and the trend feature's spec
+  and tasks before doing anything else.
 - Says back, without asking you to repeat anything: the language and why, JSON
   storage and why, the test setup, the "<5" gotcha by name, the parked browser
   chart, and the trend feature's tasks left.
@@ -202,7 +203,8 @@ commit it, and that's it for today
 ```
 
 - Commit checks as in step 5.
-- A final docs pass: tasks, statuses and Open threads current.
+- A final docs pass: tasks and statuses current, and Open threads that the build
+  has since settled are gone.
 - Says whether anything is left uncommitted.
 
 ## Optional: the cold-start test
@@ -222,8 +224,8 @@ If it answers all four from the docs alone, the docs did their job.
 | 1 | Wrote the first files; only files with content; index links only existing files; stated the agreement; stopped | |
 | 2 | Options with a recommendation | |
 | 3 | ADR Accepted with options; rule in AGENTS.md | |
-| 4 | Stopped after spec, before code; unannounced storage ADR; data kept out of git; test setup as a Proposed ADR | |
-| 4b | Tests run; tasks ticked only after they pass; test ADR Accepted | |
+| 4 | Stopped after spec, before code; unannounced storage ADR; real-data rule; test setup as a Proposed ADR | |
+| 4b | Tests run; tasks ticked only after they pass; test ADR Accepted; data kept out of git | |
 | 5 | Agent folder left out and mentioned; conventional message, bullets, no attribution, not pushed | |
 | 6 | Asked or offered options instead of guessing | |
 | 7 | Built straight away when told, docs before code; new feature folder; 001 marked Done | |
@@ -233,7 +235,7 @@ If it answers all four from the docs alone, the docs did their job.
 | 11 | Resumed from the docs; said back decisions with reasons, gotchas, parked items, tasks left; waited | |
 | 12 | Whole feature finished in one go; tasks ticked after tests; didn't commit | |
 | 13 | Old row marked superseded; no JSON outside the ADRs; no history wording | |
-| 14 | Final docs pass; commit clean | |
+| 14 | Final docs pass, settled threads cleared; commit clean | |
 | Any | Stopped for review at the end of every step | |
 
 Not covered by this script: proposals, Rejected ADRs, and the architecture
