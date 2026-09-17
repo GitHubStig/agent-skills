@@ -53,8 +53,7 @@ Start only when the user asks. Then:
    repo with one sentence of intent gets a two-line `AGENTS.md`, not ten empty
    files. Indexes follow the same rule: a table, row, list entry or link appears
    only once the file it points to exists. That includes the links under "What
-   this is" in `AGENTS.md`, and folders: don't link `features/` until a feature
-   is in it. Never write a placeholder link or a "pending" note.
+   this is" in `AGENTS.md`. Never write a placeholder link or a "pending" note.
 5. **Other instruction files point here.** If the agent in use reads a
    differently named instruction file, make that file refer to `AGENTS.md`
    instead of copying its content, so there's one set of rules.
@@ -71,13 +70,12 @@ At the start of every new session, and whenever earlier conversation may have
 been summarised or lost, before doing anything else:
 
 1. Read `AGENTS.md`, then `docs/README.md`.
-2. Read every ADR not marked Superseded or Rejected.
-3. Read `spec.md` and `tasks.md` for every feature not marked Done.
-4. Read the Open threads in `AGENTS.md`.
-5. Say back, without being asked, even when some of it doesn't seem to matter
+2. Read `spec.md` and `tasks.md` for every feature not marked Done.
+3. Read the Open threads in `AGENTS.md`.
+4. Say back, without being asked, even when some of it doesn't seem to matter
    for the next step:
-   - each Accepted ADR's decision with its reason, one line each (the language,
-     storage, test setup and so on). Never a decision without its reason;
+   - each Accepted ADR's decision and why, one line each (the language, storage
+     and so on);
    - each entry in "Things that will bite you", by name;
    - what's parked;
    - the tasks left in any unfinished feature.
@@ -113,15 +111,12 @@ Numbers are zero-padded and never reused: ADRs `0001`, features `001`.
 | The user explains what the project is, who it's for or what it won't do | `docs/product.md`, and "What this is" in `AGENTS.md`         |
 | A choice between real alternatives is made (see below)                  | A new ADR, and a row in the `docs/README.md` table           |
 | A feature is agreed, before its code                                    | `features/NNN-name/spec.md`, `plan.md`, `tasks.md`, table row |
-| A feature is agreed and the project has no automated tests yet          | An ADR marked Proposed for the test setup, flagged in the report |
 | Two or more parts start to talk to each other, or data gets a shape     | `docs/architecture/overview.md`                              |
 | Commands to run, check, test or build settle                            | "Commands" in `AGENTS.md`; details in `docs/development.md`  |
 | A rule is set ("always…", "never…")                                     | "Rules" in `AGENTS.md`; an ADR if it needed weighing up      |
 | Something surprising breaks and gets worked around                      | "Things that will bite you" in `AGENTS.md`                   |
 | The user parks something ("later", "park it", "not now")                | "Open threads" in `AGENTS.md`, with enough to resume it      |
 | An idea needs another project to change                                 | A draft in `docs/proposals/`; the user posts it              |
-| An open thread is settled, or overtaken by what got built               | Remove it, or fold the answer into the rule, ADR or spec it became |
-| Any new doc file or folder is created                                   | Its link or row in `docs/README.md`, in the same step        |
 | A task in a feature is finished and verified                            | Tick it in that feature's `tasks.md`                         |
 | A feature's spec is written                                             | Its row in the `docs/README.md` table says In progress       |
 | A feature's last task is ticked                                         | Its status in the `docs/README.md` table becomes Done        |
@@ -137,9 +132,7 @@ This is the rule the skill exists for.
 
 - **Every step ends with a docs pass.** Before reporting a step as done, update
   every doc the step affected, and check that every link in those docs resolves.
-  Docs-only steps included. Code and its docs are one change. Re-read Open
-  threads as part of it and clear the ones the step settled, rather than only
-  adding to them.
+  Docs-only steps included. Code and its docs are one change.
 - **Decisions are written when they're made,** not at the end of the feature.
 - **Before anything long** (a big refactor, a long run, a research dive), write
   down where things stand: tick tasks, add open questions to `tasks.md` or Open
@@ -169,14 +162,7 @@ Write an ADR when someone could reasonably have chosen differently. Record the
 options that were on the table and why the chosen one won, in the user's
 reasoning where they gave it. Mention it in the step report ("recorded as ADR
 0007"). A small preference that needed no weighing up goes into Rules in
-`AGENTS.md` instead of an ADR. When unsure whether it's worth an ADR, ask in one
-line.
-
-A decision that also governs future work belongs in both places: the rule in
-`AGENTS.md` Rules with a one-line reason, pointing at the ADR, and the full
-reasoning in the ADR, so someone who reads only `AGENTS.md` still knows why. "No
-third-party packages" is a rule someone has to follow tomorrow, so an ADR alone
-isn't enough.
+`AGENTS.md` instead. When unsure whether it's worth an ADR, ask in one line.
 
 Every ADR has a status:
 
@@ -196,12 +182,10 @@ changed. In the old ADR, change only the status line. In the `docs/README.md`
 table, add "(superseded by NNNN)" to the old row and add the new one. Fixing a
 typo or a broken link is fine; changing what was decided is not.
 
-Then clean up everything else. Search `AGENTS.md` and every doc outside
-`docs/adr/` for the old choice: its name, file names, commands and formats, and
-the functions, libraries and mechanisms that came with it (a serialiser, a
-parser). That includes Rules, "Things that will bite you", and the spec, plan
-and tasks of features finished long ago. Rewrite each mention to describe the
-new choice, in the present tense, or remove it if it no longer applies.
+Then clean up everything else. Search every doc outside `docs/adr/` for the old
+choice: its name, file names, commands and formats. That includes the spec, plan
+and tasks of features finished long ago. Rewrite each mention to describe the new
+choice, in the present tense.
 
 ## How the docs are written
 
@@ -232,15 +216,10 @@ new choice, in the present tense, or remove it if it no longer applies.
   that order: spec, plan and tasks first, then the code.
 - **Tasks are ticked when verified:** after an automated check passes, or after a
   manual check the user agreed to. Never just because the code is written.
-- **`tasks.md` holds build and verify steps only.** The docs pass isn't a task;
-  it happens at the end of every step anyway, so a task for it would tick itself.
 - **Keep the user's words for decisions.** If they gave a reason, use it.
 
 ## Working in steps
 
-- **Docs before code.** Don't open a source file until that feature's
-  `spec.md`, `plan.md` and `tasks.md` exist on disk. This holds even when the
-  user says to build straight away: same step, docs first.
 - **One step at a time.** A step is one request from the user: finish all of
   it, then stop. "Carry on" on a feature whose plan is approved means the whole
   feature, not just the next task; stop early only for a real question. When a
@@ -250,24 +229,15 @@ new choice, in the present tense, or remove it if it no longer applies.
   silently, and never decide on your own that it doesn't need tests. Write the
   setup you recommend (the language's built-in test runner where there is one)
   as an ADR marked Proposed, and flag it in that step's report. It becomes
-  Accepted when the user goes ahead. Write that ADR even when the language ships
-  a test runner and the choice feels obvious.
-- **A bug fix starts with a failing test,** in this order: add the case to the
-  test file, run the suite, quote the failing output in your report, then change
-  the code. Reproducing the bug by hand isn't the same thing. The test has to
-  fail on an assertion that shows the bug, not on a missing import or a type
-  error, and the output is quoted word for word, not paraphrased.
+  Accepted when the user goes ahead. Every bug fix starts with a test: run it,
+  see it fail, then fix.
 - **Verify with the project's own checks.** Formatting, linting, tests and build,
   whatever the project uses. For anything visible, look at it (run it, take a
   screenshot if you can). Check that links in changed docs resolve.
 - **Stop and report** at the end of each step, in three short parts:
   - **Changed:** code and docs touched.
-  - **Checked:** what was verified, and what wasn't and why. For a feature, say
-    whether its spec, plan and tasks were on disk before the first code edit.
+  - **Checked:** what was verified, and what wasn't and why.
   - **Next:** the next step, and any question for the user.
-
-  Report what actually happened, not what should have happened. If you worked
-  out of order, say so rather than describing the order you meant to follow.
 
   Then offer a review and a commit, and wait. Don't start the next step until the
   user says so. "Carry on", "continue", "next" and "looks good" are a go-ahead
@@ -278,12 +248,7 @@ new choice, in the present tense, or remove it if it no longer applies.
 - **Spikes before building.** When an approach is uncertain, try it in a
   throwaway location first. Spike code is never committed; what it showed goes in
   the plan or an ADR.
-- **Checks never touch real data.** A manual check reads and writes a temporary
-  copy, passed in through a path argument or an environment variable, never the
-  project's real data files. Overwriting them "just to test" can destroy what the
-  user can't get back.
-- **Temporary files** go in the system's temp folder (never the filesystem root)
-  or are deleted before the step ends.
+- **Temporary files** go outside the repo or are deleted before the step ends.
 - **Match the surrounding code:** its naming, comment density and idioms.
 
 ## Commits
@@ -304,12 +269,9 @@ Only commit when the user explicitly asks for a commit ("commit", "commit it",
    per change. A single change needs only the subject.
 4. **No attribution.** Never end with `Co-authored-by`, "Generated with", or any
    line crediting an AI, agent or tool, even if the agent in use adds one by
-   default. Check it: after committing, read the message back with `git log -1`,
-   and if such a line is there anyway, strip it with `git commit --amend`. This
-   is the one amend you don't have to be asked for.
+   default.
 5. **Docs go in the same commit** as the code they describe.
-6. **Never push, amend, rebase or force-push** unless the user asks, apart from
-   stripping an attribution line as above.
+6. **Never push, amend, rebase or force-push** unless the user asks.
 
 ```
 fix: keep the filter panel open after saving
@@ -327,8 +289,6 @@ feat: add CSV export for reports
 
 When the user says they're done for now, or the session is ending:
 
-1. Do a final docs pass first, even when the same message also asks for a
-   commit: tasks ticked, feature statuses right, Open threads current (including
-   anything half-discussed), and Rules and "Things that will bite you" still
-   true. Say in the report what the pass checked.
-2. Then commit if asked. Otherwise report what's uncommitted and offer a commit.
+1. Do a final docs pass: tasks ticked, feature statuses right, Open threads
+   current, including anything half-discussed.
+2. Report what's uncommitted, if anything, and offer a commit.

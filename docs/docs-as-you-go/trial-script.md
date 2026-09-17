@@ -231,6 +231,10 @@ If it answers all four from the docs alone, the docs did their job.
 
 ## Scorecard
 
+The checks got stricter in 0.6.0 to 0.9.0, so scores from earlier runs, such as
+0.5.0's 15 of 16, aren't directly comparable with runs on this version of the
+script. See the [changelog](CHANGELOG.md).
+
 | Step | Check | Pass |
 | ---- | ----- | ---- |
 | 1 | Wrote the first files; only files with content; index links only existing files; stated the agreement; stopped | |

@@ -4,6 +4,16 @@ Versioning follows [semver](https://semver.org/). The skill has no scripts to
 report a version, and `SKILL.md` frontmatter supports only `name` and
 `description`, so the version lives here.
 
+## 1.0.0
+
+Reverts `SKILL.md` and `reference/templates.md` to 0.5.0, which scored best across the trial runs
+(15 of 16 checks passed). The changes in 0.6.0 to 0.9.0 are no longer in the skill; their notes
+stay below as a record of what was tried.
+
+The trial script is not reverted. It keeps the stricter checks added in 0.6.0 to 0.9.0, so the
+15 of 16 score was measured on an older, more lenient script. A run of 1.0.0 against the current
+script may score lower without the skill having changed.
+
 ## 0.9.0
 
 Changes from the ninth trial run (Sonnet), where manual checks overwrote the real data file:
